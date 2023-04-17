@@ -1,0 +1,12 @@
+To get the specific folder from github:-
+1->git sparse-checkout [folder or file Name]
+2->git pull origin [brance Name]master
+
+To push from gitbase:-
+
+1-> Go to that folder in gitbase
+2->git status -->> To check the status (if red then not added to staging area if green then added successfull to staging area)
+3->git add . -->> Adding to staging area and ready to commit
+4->git commit -m "Commit Name" -->> After commit Ready to push in repo
+5->git push origin [master(Branch Name)]
+

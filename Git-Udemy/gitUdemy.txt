@@ -1,0 +1,402 @@
+How to check the name is git bash -->> git config user.name
+How to change the name in git bash -->> git config --global user.name "Type Name"
+How to check the Email is git bash -->> git config user.email
+How to change the Email in git bash -->> git config --global user.email "Type email ID"
+
+https://www.gitkraken.com/download/windows64--->> TO download the gitkraken
+
+--------------------------------------------------------------
+Linix command -->>
+
+cd driveName : --->> Change the drive one to another(C to D)
+
+ls -->> It give the list in which folder or directory you are, list of folder, files, anything
+ls folderName -->> It will give the list of folder by giving folderName
+start . -->>>It will open the window File Explorer in which folder you have
+pwd -->> It will give the path in which folder i in
+cd directoryName-->> To Change directory 
+cd .. -->> To Move backWard 
+touch fileName.extentionName -->> Creating a newFile (ex my.txt) if you want to create multiple file at same time then touch file1.txt file2.txt
+mkdir folderName -->> It will create the folder (mkdir folder1 folder2 -->> it will create multiple folder at same time)
+rm -->> Remove file in folder
+-------------------------------------------------------
+
+git init -->> it will initialize the git repo
+git status -->> it wiil show the status of our git repo
+rm -r folderName -->>It will delete that folder
+
+Working dir -->> git add(git command) -->> Staging area -->> git commit(git command) -->> repo
+	
+git add fileName -->>> It will add file in staging area it means they will ready to commit means ready to add in repo
+git add file1 file2 -->> If we want to add multiple files at a same time
+git add . -->>It will add all files newly created or modify files to stagginf area.
+
+git commit (don't use this) -->> It is use when you want to use multi-line message. it will open a VIM to type your message
+git commit -m "Type Msg here"-->> It will commit the files and add those files in repo
+After commit we check the status it will give the msg (nothing to commit, working tree is clean) it means all stuf the add to repo
+-->> Amending Commits it will help to edits the previous commits
+ex-->> git commit -m "some commit" -->> kuch commit kiya
+		git add forgetten_filen-->> but forget to add file and mistake by commit
+		git commit --amend -->> it will forward to that page
+	It will help to us if we don't want to extra commit for forgetten file than we use this
+
+git log -->> It will give the logfiles of repo, and give the number of commits and who's commit with same and email
+git log --oneline -->> it will give the msg, when we commited the files, in shorter forms
+
+Atomic Commits means-->> when possible, a commit should encompass a single feature, change, or fix .In other words, try to keep
+							each commit focused on a single thing. This makes it much eaiser to undo or rollback changes later on. it also makes your code or project eaiser to review.
+
+git commit -a -m "Msg" -->> Adding and commit in one line
+-----------------------------------------------------------
+				BRANCHING
+				
+In 2020 github change branch "Master to Main" but in git "It is remain same".
+
+Head -> Master (it is always refer to master branch) it will refer to that branch in which i have
+if switch master to anyother branch is will refer to that branch
+
+1-> git branch -->> It will give the all branchesName in my repo(get out from here git log q)
+2-> git branch <branch-Name>  -->> It will create a branch but head is stay on same
+3-> git switch <branch-Name> -->> It will switch to that branch and now head is pointed to that branch
+	git switch -->> Is new command to switch to any branch 
+	git checkout -->> is same as switch but it's old 
+4->git switch - c <branch-Name> -->> it will create branch and switch to that branch in one command 
+	here c-create 
+
+i have a file and i edit this file and without commit i want to switch to anyother branch it will give me error without 
+commit it can not switch to any other branch or overwritten the file
+
+5-> git branch -D <branch-Name> -->> it will delete that branch, if you are on that branch you can't delete this because head is pointin to that branch.
+6-> git branch -m <NewBranchName> -->> it will rename the branch name, if you have to that brach, if you are on other branch and rename other branhName it not working
+
+----------------------------------------------------------------------
+
+		Merging
+
+we always merge to the current HEAD branch
+
+Steps-->>
+1->Switch to or checkout the branch you want to merge the changes into( the receving branch)
+2->Use the git merge command to merge changes from a specific branch into current branch
+				
+
+--------------------------------------------------------------------------------
+		git diff
+
+we can use the git diff command to view changes between commits, branch, files, our, working directory, and more!
+we often use git diff alongside commands like git status and git log, to get a better picture of a repository and how it has changed over time.
+
+
+1->git diff-->> without additional options, git diff lists all the changes in our working directory that are NOT staged for the next commit.
+2->git diff HEAD -->> list all changes in the working tree since your last commit
+	->> git diff HEAD HEAD~1-->> 0r git diff hashcodein gitbash -->> 
+3->git diff --staged or git diff --cached -->> will list the changes between the saging area and our last commit. "Show me what will be included in my commit if I run git commit right now".
+	(git diff --staged fileName.extention)
+4->git diff branch1..branch2 -->> will list the changes between the tips of branch1 and branch2(in place of .. you use space also result is same)
+5->git diff commit1..commit2 -->> To compare two commits, provide git diff with the commit hashes of the commits in question.
+
+---------------------------------------------------------------------------------
+			git Stashing
+
+git provides an easy way if stashing these uncommitted changes so that we can retrun to them
+later, without having to make unnecessary commits.
+
+git stash(can use also -> git stash save) -->> is super useful command that helps you save changes that you are not ready to commit. you can stash'changes and then come back to them later.
+git stash pop -->> to remove the most recently stahed chages in your stash and re-apply then to your working copy.
+git stash apply -->> to apply whatever is stashed away, without removing it from the stash. THis can be useful if you want to apply stashed chages to multiple brances.
+
+Now if we use git stash again and again without commit last change stash store in the form of stack(FIFO)
+to check the list of stash stack -->>
+git stash list-->> it will give the list of stack of stash
+
+Now 
+git assumes you want to apply the most recent stash when you run git stash apply,
+but you can also specify a particular stash like ( git stash apply stash@{2})
+
+Dropping stashes -->> To delete a particular stash, you can use -->> git stash drop<stash-id>
+Clearing the stash -->> To clear out all stashes, run -->> git stash clear
+
+---------------------------------------------------------------------
+					CheckOut
+					
+-----------------------------------------------------------------------
+
+		Restore
+
+git restore <fileName> -->> is a brand new Git command that helps with undoing operations
+
+Suppose you've made some chages to a file since your last commit. You've save the file 
+but then realize you definitely do NOT want those chages anymore!
+To restore the file to the contents in the HEAD.
+Use git restore<file-name>---same as git checkout HEAD fileName
+
+git restore --source HEAD~commitNo. fileName
+
+git restore --staged fileName -->> If you have accidentally added a file to your staging area with git add and you don't wish to include
+									it in the next commit, you can use git restore to remove it from staging.
+			
+----------------------------------------------------------
+
+		GIt reset
+		
+suppose you've just made a couple of commits on the master branch, but you actually meant to make them on a separate brances
+instead. To undo those commits, you can use git reset.
+
+git reset<commit-hash> Will reset the repo back to a specific commit. The commits are gone
+
+git reset --hard HEAD~1 will delete the last commit and associated changes.
+
+if you want to undo both the commits AND the actual chages in your files, you can use the --hard options.
+
+
+git revert -->> is similar to git reset in that they both "undo" changes, but they accomplish it in different ways.'
+git reset -->> actually moves the branch pointer backwards, elimating commits.
+git revert -->> Instead creates a brand new commit which reverses/undo the chages from a commit. 
+Because it results in a new commit, you will be prompted to enter a commit message.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+							GIT-HUB 
+			
+It is a hosting paltform for git repository.You can put your own git repo an github and access them from anywhere and
+share them with people around the world. 
+Beyond hosting repos, github also provide additional feature that are not native to git(but are super usefull)
+Basically github helps people share and collaborate on repos.
+
+Git-hub is not your only option...
+There are tons of competing tools that provide similar hosting and collaboration feature,including
+-GIT-Lab, 
+-BitBucket
+-Gerrit
+
+Founded in 2008, GitHub is now the world's largest host of source code.
+It's FREE for basic services
+
+
+=========================
+Cloning -->> Get a local copy of an existing Repository instead.
+
+->git clone<url> -->> It will retrieve all the files associated with the repository and will copy them to your local machine.
+
+--->>> Viewing Remotes 
+To view any existing remotes for you repository, we can run 
+->git remote or git remote -v ---->>> This just displays a list of remotes. If you haven't added any remotes yet, you won't see anything!
+
+--->>> Adding A new Remotes
+A remote is really two things: a URL and a label. TO add a new remote, we need to provide both to git
+->git remote add <name> <url>  (name = origin & what ever you want)
+
+Origin -->> Is a conventional Git remote name, but it is not at all special. It's just a name for a URL
+When we clone a Github repo, the default remote name setup for us is called origin. You can change it. Most people leave it.
+
+Other Commands -->> 
+They are not commonly used, but there are commands to rename and delete remotes if needed.
+->git remote rename <old> <new>
+->git remote remove <name>
+
+PUSHING--->>>
+Now that we have a remote set up, let's push some work up to GitHub! To do this, we need to use the git push command
+->git push <remote> <branch>
+ex-> git push origin master
+
+Push In Details -->> While we often want to push a local branch up to a remote brance of the same name, we don't have to!
+					To push our local pancake branch up to a remote branch called waffle we could do:
+->git push <remote> <local-branch> : <remote-brance>
+ex-> git push origin pancake:waffle
+
+The -u Option--->>>
+the -u option allows us to set the upstream of the branch we're pushing. You can think of this as a link connecting our local branch to a branch on github.
+->git push -u origin master.
+
+Remote Tracking Branches--->>>
+At the time you last communicated with this remote repository, here is where x branch was pointing
+
+They follow this pattern <remote>/<branch>.
+
+Remote Branches--->>>
+->git branch -r --->> to view the remote branches our local repository knowa about.
+
+To check the last time when we communicated with the git-hub 
+->git checkout <remote>/<branch> ex-> git checkout origin/main
+goto again that point 
+->git switch main
+
+
+To change branches on remote 
+git switch <branch-Name> or git checkout --track origin/<branch-Name>
+
+
+GIT-Fetch--->>>
+git fetch <remote> -->>> command fetches braches and histroy from a specific remote repository.It only updates remote tracking brances.
+git fetch origin -->> would fetch all changes from the origin remote repository.
+
+we can also fetch a specific branch from a remote using 
+->git fetch <remote>/<branch> ex-> git fetch origin master 
+
+GIT-PULL--->>>>
+git pull is another command we can use to retrieve changes from a remote a repository. Unlike fetch. pull actually update our HEAD brach with whatever changes are retrieved from the remote.
+git pull = git fetch + git merge
+
+->git pull <remote>/<branch> -->> we specify the particular remote and branch we want to pull using this command.
+	Just like with git merge, it matters where we run this command from. Whatever branch we run it from is where the changes will be merged into.
+
+Shorter syntax of Pull--->>>
+-> git pull -->> it mean if we pull the code, we get the code from that branch jaha pr hum hai abhi 
+means -->> if we are on master branch then we get the code from master
+			if we are on food branch then we get the code from food
+			
+COLLABORATING--->>>
+Feature Branches--->>> Rather than working directly on master/main, all new development should be done on separate branches!
+
+Merging in Feature Branches--->>> At some point new the work on featrue braches will need to be merged in to the master branch! 
+There are a couple of options for how to do this...
+1->Merging at will, without any sort of discussion with teammates. Just do it whenever you want.
+2->Send an email or chat message or something to your team to dicuss if the changes should be merged in.
+3->Pull Requests!
+
+PULLING REQUEST--->>>
+
+FORKING-->>
+github allows us to create personal copies of other people's repositors. we call those copies a "forl" of the original.
+
+1.Fork the project
+2.Clone the fork
+3.Add upstream remote
+4.Do some work
+5.Push to origin
+6.Open PR
+
+
+REBASING--->>>
+There are two main ways to use the git rebase command:
+1->as an alternative to merging
+2->as a cleanup tool
+
+We can instead rebase the feature branch onto the master branch. This moves the entire feature branch so that it BEGINS at the tip of the master branch.All of the work is still there, but WE HAVE RE-WRITTEN HISTORY.
+Instead of using a merge commit, rebasing rewrites history by creating new commits for each of the original feature commit.
+->git rebase master
+->git rebase --abort = for undo
+
+INTERACTIVE REBASE -->>
+Running git rebase with the -i option will enter the interactive mode, which allows us to edit commits,add files,drop commits, etc. Note that we need to specify how far back we want to rewrite commits.
+Also notice that we are not rebasing onto another branch.Instead, we are rebasing a series of commits onto the HEAD they currently are based on.
+->git rebase -i HEAD~4 =After enter the commit it open commits in editor with hascode commit
+
+After changing the commit -->> hash code above that commit is also change
+
+In our text editor, we'll see a list of commits alongside a list of commands that we can choose from. Here are couple of the more commonly used commands:
+->pick = use the commit
+->reword = use the commit,but edit the commit message 
+->edit = use the commit, but stop for amending
+->fixup = use the commit contents but meld it into previous commit and discard the commit message 
+->drop = remove the commit
+
+GIT TAGS--->>>
+Tags are pointer that refer to particular points in Git history.we can mark a particular moment in time with a tag. Tags are most often used to mark version release in projects(v4.1.0, v4.1.1 etc )
+Think of tag as brach reference that do NOT CHANGE. Once a tag is created, it always refers to the same commit. It's just label for a commit.
+
+The 2 types 
+1->lightweight tags -> They are just a name/label that points to a particular commit.
+2->annotated tags -> store extra meta data including the autor's name and email, the data , and a tagging message(like a commit message)
+
+SEMANTIC VERSIONING (2.4.1)--->>>
+	2			.		4				.	1
+major release		minor release		patch release
+
+patch release -->> do not contain new feature, They typically signify bug fixes and other changes that do not impact how the code is used.
+
+minor release -->> added new features or functionality have been added, but the project is still backwards compatible.No breaking changes. The new functionality is optional and should not force users to rewrite their own code. and patch become zero (0)
+
+major release -->> that is no longer backwards compatible. Feature may be removed or changed substantially. and patch and minor release become zero (0)
+
+VIEWING TAGS--->>>
+git tag will print a list of all the tags in the current repository.
+->git tag
+->git tag -l "*beta*" -->> will print a list of tags that include "beta" in their name.
+
+* before word mean it's igonre the character before the beta 
+* after word mean it's igonre the character after the beta
+
+CHECKING OUT TAGS --->>> TO  view the state of repo at a particular tag, we can use this command . This puts us in detached HEAD!
+->git checkout <tag>
+
+TAG WITH DIFF-->>
+-> git diff v17.0.0 v17.0.1 -->> it give the difference b/w them 
+
+CREATING TAG---->>>
+1->Lightweight tag -> To create a lightweight tag,use this, by default, Git will create the tag referring to the commit that HEAD is referencing.
+	->git tag <tagName>
+
+2->Annotated Tags -> Use git tag -a to create a new annotated tag. Git will then open your default text editor and prompt you for additional information
+	->git tag -a <tagName>
+	
+Similar to git commit, we can also use the -m option to pass a message directly and forgo the opening of the text editor.
+
+TO check the tag who worte this commit
+->git show <tagName>
+
+Tagging Previous Commits --->>>
+	so far we've seen how to tag the commit that HEAD reference. We can also tag an older commit by providing the commit hash: 
+	-> git tag -a <tagName> <commit-a=hash>
+	
+Replacing tag or Forcing tags --->>> 
+Git will yell at us if we try to reuse a tag that is already referring to a commit. if we use the -f option,we can FORCE out tag through.
+->git tag -f <tagName>
+
+DELETING TAGS--->>>
+To delete a tag, use 
+->git tag -d <tagName>
+
+PUSHING TAGS --->>> 
+By default, the git push command doesn't transfer tags to remote servers. If you have a lot of tags that you want to push up at once, you can use the --tags option to the git push command. This will transfer all of your tags to the remote server that are not already there.
+->git push --tags
+
+
+CONFIG FILES--->>>
+->git config --local user.name "myName" -->> this will set a name locally on a particular repo 
+->git config --local user.name -->> this will show the name in locally in a patricluar repo.
+ same as like email also
+
+set in congig file path -->> .git -> config
+
+OBJECT FOLDER --->>>
+The objects directory contains all the repo files. This is where Git stores the backups of files, the commits in a repo, and more.
+The files are all compresses and eccrypted, so they won't lool like much!
+Types of git Objects -->>>commit
+							tree
+							blob
+							annotated tag
+							
+->echo "hi" | git hash-object --stdin --->>>it will give the hexa-decimal code of any file msg anythingelse	
+->git cat-file -p hascode -->>it will give the word related to that hashcod
+
+->git reflog show HEAD 
+
+ADDING ALIASES--->>>
+we can easily set up git aliases to maker out Git experience a bit simpler and faster.
+ex-> instead of type git commit, type git ci.
+all aliases save in .gitconfig file 
+ git ci = git commit
+ 
+THROUGH COMMANDLINE 
+-> git config --global alias.GiveName originalName
+ex-> git config --global alias.showmybranch branch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+							
+							
