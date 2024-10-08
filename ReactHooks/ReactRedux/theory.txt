@@ -1,0 +1,98 @@
+Install Redux --> i redux react-redux
+
+# If you use npm:
+npm install react-redux
+
+# Or if you use Yarn:
+yarn add react-redux
+
+Redux itself is a standalone library that can be used with any UI layer or framework, including React, Angular, Vue, Ember, and vanilla JS. Although Redux and React are commonly used together, they are independent of each other.
+React Redux is the official Redux UI binding library for React. If you are using Redux and React together, you should also use React Redux to bind these two libraries.
+
+web site --> https://react-redux.js.org/tutorials/quick-start
+
+Steps : --> 
+1 : Create a folder name as --> actions(folder) in which create file name as--> (index.js)(file)
+2 : Create a folder name as --> reducers(folder) in which create file name as--> (index.js)(file) & upDown.js
+3 : Create a file in src Folder name as store.js(file)
+
+4 : In actions folder we define our action like this 
+ex --> 
+
+                export const incNumber = () => {
+                    return {
+                        type: "INCREMENT" // Type of the action
+                    }
+                }
+                export const decNumber = () => { type: "DECREMENT" }
+
+5 : Create Reducer , In upDown.js 
+ex--> 
+
+                const initialState = 0;
+                const changeTheNumber = (state = initialState, action) => {
+                    switch (action.type) {
+                        case "INCREMENT": return state + 1;
+                        case "DECREMENT": return state - 1;
+                        default: return state;
+                    }
+                }
+                export default changeTheNumber
+
+6 : Now we have to pass only one reducer so for that we create a file index.js and pass this
+ex --> 
+
+                import changeTheNumber from "./upDown";
+
+                import { combineReducer } from "redux";
+
+                const rootReducer = combineReducer({
+                    changeTheNumber
+                })
+                export default rootReducer
+
+7 : Now create a store like below 
+ex--> 
+                import { createStore } from "redux"; // import the configureStore from reducx
+
+                import rootReducer from "./reducers"; // import the rootreduce file from reducers in which your all reducers
+
+                const store = createStore(rootReducer); // pass as a store , if any one want to use, we easily give store
+
+                export default store;
+
+8 : Now import store in index.js file in src folder
+9 : Now in index.js file impor the provide like this ex--> import {Provider} from 'react-redux' 
+ex--> 
+            ReactDOM.createRoot(document.getElementById('root')).render(
+                <>
+                    <Provider store={store}> // Provide like this
+                    <App />
+                    </Provider>
+                </>,
+                )
+
+10 : get the data from store 
+import { useSelector } from 'react-redux/' // import this 
+
+const myState = useSelector((state) => state.changeTheNumber)// call the method and get initial value in myState and use it. and it will seletc the reducer which reducer we are calling 
+
+11 : import { incNumber, decNumber } from './actions'  // import this from action and we call this function when we click thie buttion or any action
+
+Now OnClick we have to call the function, so for this we have hool call as useDispatch();
+
+ex--> 
+const dispatch = useDispatch();
+onClick(() => dispatch(incNumber())) // calling the function like this
+
+12 : if you want to send data from app to reducer then, first app to action and use as this like this below
+ex--> onClick(() => dispatch(incNumber(value))) // passing the value in the fucntion for action , then reducer
+ex --> key : value --> payload : value // in action 
+then action send to reducer now this value got by reduce in "action". 
+and to get the value in the reducer like 
+action.key --> "action.payload"
+
+
+
+
+
